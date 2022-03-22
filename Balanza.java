@@ -1,75 +1,83 @@
-package tema3;
+package ar.edu.unlp.info.oo1.ejercicio3_balanzaBis;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Balanza {
- private double mont;
- private int cant;
- private int preciokg;
- private int pesokg;
- private String resumen;
+ private int cantidadDeProductos;
+ private double precioTotal;
+ private double pesoTotal;
+ private List<Producto> productos = new ArrayList<Producto>();
+ private Ticket ticket;
  private Producto p;
+
  
-  public Balanza(double unMont,int unCant,int unPrecioKg, int unPesoKg){
-   mont = unMont;
-   cant = unCant;
-   preciokg = unPrecioKg;
-   pesokg = unPesoKg;   
-  }
-
-  public double getMont() {
-        return mont;
-  }
-
-  public void setMont(double mont) {
-        this.mont = mont;
-  }
-
-  public int getCant() {
-        return cant;
-  }
-
-  public void setCant(int cant) {
-        this.cant = cant;
-  }
-
-  public int getPreciokg() {
-        return preciokg;
-  }
-
-  public void setPreciokg(int preciokg) {
-        this.preciokg = preciokg;
-  }
-
-  public double getPesokg() {
-        return pesokg;
-  }
-
-  public void setPesokg(int pesokg) {
-        this.pesokg = pesokg;
-  }
-  
-  public void iniciarCompra(){
-    mont = 0.0;
-    cant = 0;
-  }
-  
-  public void registrarProducto(Producto p){
-    double precio = (this.getPesokg()*this.getPreciokg());    
-    this.mont = precio;
-    this.cant++;
-    this.resumen = p.getDescripcion() + " - " + this.mont;
-  }
+ public Balanza(){
+	 
+ }
  
-  public String devolverMontoAPagar(){
-   String aux;
-   aux = "El monto de la compra actual es de " + this.getMont();
-   return aux;
-  }
-  
-  public String devolverResumenDeCompra(){
-   String aux,act = "";
-   act = act + this.resumen;
-   aux = act + " ,El monto total de la compra es de " + this.getMont() + ", por la compra de " + this.getCant() + " productos." ;
-   return aux;
-  }
+ public int getCantidadDeProductos() { 
+	return cantidadDeProductos;
+ }
  
-    
+ public void setCantidadDeProductos(int cantidadDeProductos) {
+ 	this.cantidadDeProductos++;
+ }
+ 
+ public double getPrecioTotal() {
+	return precioTotal;
+ }
+ 
+ public void setPrecioTotal(double precioTotal) {
+	this.precioTotal = precioTotal;
+ }
+ 
+ public double getPesoTotal() {
+	return pesoTotal;
+ }
+ 
+ public void setPesoTotal(double pesoTotal) {
+	this.pesoTotal = pesoTotal;
+ }
+
+ public void agregarProducto(Producto item) { 
+  this.productos.add(item);
+  this.cantidadDeProductos++;
+ }
+ 
+ public String toString() {
+  return "Balanza [Precio total: " + getPrecioTotal() + ", Peso total: " + getPesoTotal() + ", Cantidad de productos: " + getCantidadDeProductos() + " ]."; 
+ }
+
+ public Ticket emitirTicket() {
+  for(Producto producto : productos)
+	producto.toString();
+  this.toString();
+  ticket.toString();
+  return this.ticket;
+ }
+ 
+ public Producto PrecioTotal() {
+   double total = 0;
+   for(Producto producto : productos) 
+	total =+ producto.precio();
+   this.setPrecioTotal(total);
+   return this.p;
+ }
+ 
+ public Producto PesoTotal() {
+  double total = 0;	 
+  for(Producto producto : productos) 
+    total =+ producto.getPeso();
+  this.setPesoTotal(total);
+  return this.p;
+ }
+
+ public void ponerEnCero() {
+   this.cantidadDeProductos = 0;
+   this.pesoTotal = 0;
+   this.precioTotal = 0;
+   this.productos.clear();
+ } 
+ 
 }
